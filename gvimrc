@@ -7,7 +7,8 @@ if has("gui_macvim")
    macmenu &File.New\ Tab key=<nop>
    " map Cmd-T to the CommandT plugin
    map <D-t> :CommandT<CR>
+   set guifont=Monaco:h24
 elseif has("gui_running")
-   set gfn=Monospace\ 18
+   set guifont=Monospace\ 18
 endif
 
