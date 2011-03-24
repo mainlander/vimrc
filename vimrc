@@ -190,6 +190,9 @@ cmap cd. lcd %:p:h
    inoremap <C-u>5 <esc>yypVr^A
 "}
 
+" Alt-T toggles Tlist window
+nmap <C-l> :TlistToggle<CR>
+
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
 "--------------------------------------------------------------------------- 
@@ -297,3 +300,8 @@ let g:CommandTMaxHeight = 15
 
 " --- SuperTab
 let g:SuperTabDefaultCompletionType = "context"
+
+" --- taglist for Mac OS X
+if has("mac")
+   let g:Tlist_Ctags_Cmd = "/opt/local/bin/ctags"
+endif
