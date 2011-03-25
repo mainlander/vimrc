@@ -46,3 +46,6 @@
 [submodule "bundle/EnhCommentify.vim"]
 	path = bundle/EnhCommentify.vim
 	url = https://github.com/vim-scripts/EnhCommentify.vim.git
+[submodule "bundle/nerd-tree"]
+	path = bundle/nerd-tree
+	url = git://github.com/vim-scripts/The-NERD-tree.git
