@@ -9,6 +9,15 @@ if has("gui_macvim")
    map <D-t> :CommandT<CR>
    set guifont=Monaco:h24
 elseif has("gui_running")
-   set guifont=Monospace\ 18
+   if has("win32") || has("win64")
+      set langmenu=zh_TW.utf-8
+      source $VIMRUNTIME/delmenu.vim
+      source $VIMRUNTIME/menu.vim
+      language messages zh_TW.utf-8
+      set guifont=Consolas:h17
+      set guifontwide=DFKai\-SB:h17
+   elseif
+      set guifont=Monospace\ 18
+   endif
 endif
 
