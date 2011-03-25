@@ -191,7 +191,7 @@ cmap cd. lcd %:p:h
 "}
 
 " Alt-T toggles Tlist window
-nmap <C-l> :TlistToggle<CR>
+nmap <leader>t :TlistToggle<CR>
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
