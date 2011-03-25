@@ -190,8 +190,11 @@ cmap cd. lcd %:p:h
    inoremap <C-u>5 <esc>yypVr^A
 "}
 
-" Alt-T toggles Tlist window
+" <leader>a toggles Tlist window
 nmap <leader>a :TlistToggle<CR>
+
+" <leader>nt toggles NERDTree
+nnoremap <leader>nt :NERDTree<CR>
 
 "--------------------------------------------------------------------------- 
 " PROGRAMMING SHORTCUTS
