@@ -43,3 +43,6 @@
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "bundle/EnhCommentify.vim"]
+	path = bundle/EnhCommentify.vim
+	url = https://github.com/vim-scripts/EnhCommentify.vim.git
