@@ -16,7 +16,7 @@ elseif has("gui_running")
       language messages zh_TW.utf-8
       set guifont=Consolas:h17
       set guifontwide=DFKai\-SB:h17
-   elseif
+   else
       set guifont=Monospace\ 18
    endif
 endif
