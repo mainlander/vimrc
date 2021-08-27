@@ -1,17 +1,13 @@
-vgod's vimrc
+Mainlander's vimrc
 ============
-Author: Tsung-Hsiang (Sean) Chang <vgod@vgod.tw>
-
-Fork me on GITHUB  https://github.com/vgod/vimrc.
 
 HOW TO INSTALL
 --------------
 
 1. Check out from github
 
-        $ git clone https://github.com/vgod/vimrc ~/.vim
+        $ git clone https://github.com/mainlander/vimrc ~/.vim
         $ cd ~/.vim
-        $ git submodule update --init
 
 2. Install ~/.vimrc and ~/.gvimrc
 
@@ -26,11 +22,7 @@ HOW TO INSTALL
 UPGRADE PLUGIN BUNDLES
 ----------------------
 
-All plugins (except vim-latex) were checked out as git submodules, 
-which can be upgraded with `git pull`. For example, to upgrade Command-T 
-
-     $ cd ~/.vim/bundle/command-t
-     $ git pull
+In vim command line, execute :PlugInstall
 
 HOW TO USE
 ----------
