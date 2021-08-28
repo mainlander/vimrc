@@ -13,7 +13,12 @@ HOW TO INSTALL
 
         $ ./install-vimrc.sh
 
-3. (Optional, if you want Command-T) Compile the Command-T plugin
+3. Compile YouCompleteMe
+
+        $ cd .vim/plugged/YouCompleteMe/
+        $ ./install.py
+
+4. (Optional, if you want Command-T) Compile the Command-T plugin
 
         $ cd .vim/bundle/command-t/ruby/command-t
         $ ruby extconf.rb
