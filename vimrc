@@ -42,7 +42,8 @@ Plug 'vim-scripts/snipMate'
 Plug 'lervag/vimtex'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/tComment'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/syntastic'
@@ -51,7 +52,14 @@ Plug 'vim-scripts/indentpython.vim'
 "Plug 'nvie/vim-flake8'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-expand-region'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'itchyny/vim-cursorword'
+
+if has('mac')
+    Plug 'ybian/smartim'
+endif
 
 " Initialize plugin system
 call plug#end()
@@ -367,39 +375,39 @@ if has("mac")
    let g:Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 endif
 
-" 自动补全配置
-set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif    "离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
-"上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-"let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-
-let g:ycm_collect_identifiers_from_tags_files=1    " 开启 YCM 基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2    " 从第2个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0    " 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
-"nnoremap <leader>lo :lopen<CR>    "open locationlist
-"nnoremap <leader>lc :lclose<CR>    "close locationlist
-inoremap <leader><leader> <C-x><C-o>
-"在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
+" " 自动补全配置
+" set completeopt=longest,menu    "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif    "离开插入模式后自动关闭预览窗口
+" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    "回车即选中当前项
+" "上下左右键的行为 会显示其他信息
+" inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+" inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+"
+" "youcompleteme  默认tab  s-tab 和自动补全冲突
+" "let g:ycm_key_list_select_completion=['<c-n>']
+" let g:ycm_key_list_select_completion = ['<Down>']
+" "let g:ycm_key_list_previous_completion=['<c-p>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
+" let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+"
+" let g:ycm_collect_identifiers_from_tags_files=1    " 开启 YCM 基于标签引擎
+" let g:ycm_min_num_of_chars_for_completion=2    " 从第2个键入字符就开始罗列匹配项
+" let g:ycm_cache_omnifunc=0    " 禁止缓存匹配项,每次都重新生成匹配项
+" let g:ycm_seed_identifiers_with_syntax=1    " 语法关键字补全
+" nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>    "force recomile with syntastic
+" "nnoremap <leader>lo :lopen<CR>    "open locationlist
+" "nnoremap <leader>lc :lclose<CR>    "close locationlist
+" inoremap <leader><leader> <C-x><C-o>
+" "在注释输入中也能补全
+" let g:ycm_complete_in_comments = 1
+" "在字符串输入中也能补全
+" let g:ycm_complete_in_strings = 1
+" "注释和字符串中的文字也会被收入补全
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR> " 跳转到定义处
 
 " ctrlp settings
 let g:ctrlp_map = '<leader>c'
@@ -427,3 +435,29 @@ let g:vimtexenabled = 1
 let g:vimtexcompleteimgusetail = 1
 let g:vimtexviewgeneralviewer = 'open'
 let g:vimtexviewgeneraloptions = '-r @line @pdf @tex'
+
+" vim-indent-guides
+" let g:indent_guides_start_level=2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_tab_guides=0
+" set list
+" set listchars=tab:\|\ 
+
+" coc-nvim
+"状态信息加入vim-airline。
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = '✘:'
+let airline#extensions#coc#warning_symbol = '!:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" 使用TAB鍵觸發自動補全
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
