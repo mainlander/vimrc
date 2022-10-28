@@ -127,9 +127,9 @@ set laststatus=2
 ""set statusline+=%=%-10.(%l,%c%V%)\ %p%%/%L
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline_theme = 'violet'
 
 if !exists('g:airline_symbols')
@@ -444,13 +444,20 @@ let g:indent_guides_enable_on_vim_startup = 1
 " set list
 " set listchars=tab:\|\ 
 
+" "itchyny/vim-cursorword
+" let g:cursorword = 1                          "开启实时高亮同光标下字符串。
+" let g:cursorword_highlight = 0                "取消使用默认的高亮配置，默认带下划线。
+" let g:cursorword_delay = 50                   "设置刷新时间。
+" hi CursorWord0 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
+" hi CursorWord1 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
+
 " coc-nvim
 "状态信息加入vim-airline。
-let g:airline#extensions#coc#enabled = 1
-let airline#extensions#coc#error_symbol = '✘:'
-let airline#extensions#coc#warning_symbol = '!:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" let g:airline#extensions#coc#enabled = 1
+" let airline#extensions#coc#error_symbol = '✘:'
+" let airline#extensions#coc#warning_symbol = '!:'
+" let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+" let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " 使用TAB鍵觸發自動補全
 function! s:check_back_space() abort
   let col = col('.') - 1
