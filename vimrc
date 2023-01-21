@@ -111,6 +111,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+let g:smartim_default = 'com.apple.keylayout.ABC'
+
 " TAB setting{
    set expandtab        "replace <TAB> with spaces
    set softtabstop=4 
@@ -459,12 +461,44 @@ let g:indent_guides_enable_on_vim_startup = 1
 " let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 " let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " 使用TAB鍵觸發自動補全
+""function! s:check_back_space() abort
+""  let col = col('.') - 1
+""  return !col || getline('.')[col - 1]  =~ '\s'
+""endfunction
+""
+""inoremap <silent><expr> <Tab>
+""      \ pumvisible() ? "\<C-n>" :
+""      \ <SID>check_back_space() ? "\<Tab>" :
+""      \ coc#refresh()
+
+" 用 tab 鍵觸發自動補全
+" 注意：載入設定後記得用命令 `verbose imap <tab>` 確定這沒有被其他外掛覆蓋掉
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+" 讓 enter 鍵自動完成第一個建議並讓 coc 進行格式化（不確定個格式化指的是什麼，我看不太出來）
+" enter 可以被重複 keymap（看不懂就算了，意思是你亂搞不會出錯）
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" 用 \rn 重新命名變數、函數（原文寫「符號」）
+nmap <leader>rn <Plug>(coc-rename)
+
+" 這個讓你可以捲動浮動視窗和跳出式框框（有時候自動補全給你的文件會太長超出螢幕，如果你想要看下面的內容必須設定這個）
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+

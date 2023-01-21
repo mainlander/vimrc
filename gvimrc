@@ -7,7 +7,7 @@ if has("gui_macvim")
    macmenu &File.New\ Tab key=<nop>
    " map Cmd-T to the CommandT plugin
    map <D-t> :CommandT<CR>
-   set guifont=Meslo\ LG\ S\ Regular\ Nerd\ Font\ Complete\ Mono:h20
+   set guifont=Meslo\ LG\ S\ Regular\ Nerd\ Font\ Complete\ Mono:h24
    let g:smartim_default = 'com.apple.keylayout.ABC'
 elseif has("gui_running")
    if has("win32") || has("win64")
